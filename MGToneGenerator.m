@@ -39,31 +39,17 @@ void ToneInterruptionListener(void *inClientData, UInt32 inInterruptionState);
 
 @property (nonatomic) NSTimer *fadeInTimer;
 @property (nonatomic) NSTimer *fadeOutTimer;
-
-@property (nonatomic) NSArray *pattern;
-@property (nonatomic) NSUInteger patternIndex;
-@property (nonatomic) BOOL patternShouldRepeat;
-@property (nonatomic) NSTimer *patternTimer;
-
 @end
 
 @implementation MGToneGenerator
 
 - (id)init
 {
-  self = [super init]; // http://stackoverflow.com/a/12428407/103058
+  self = [super init];
   if (self) {
     _frequency = 5000; // default frequency
     _amplitude = DEFAULT_AMPLITUDE;
     _sampleRate = 44100;
-
-    OSStatus result = AudioSessionInitialize(NULL, NULL, ToneInterruptionListener, (__bridge void *)(self));
-    if (result == kAudioSessionNoError)
-    {
-      UInt32 sessionCategory = kAudioSessionCategory_MediaPlayback;
-      AudioSessionSetProperty(kAudioSessionProperty_AudioCategory, sizeof(sessionCategory), &sessionCategory);
-    }
-    AudioSessionSetActive(true);
   }
   return self;
 }
@@ -108,10 +94,6 @@ void ToneInterruptionListener(void *inClientData, UInt32 inInterruptionState);
 }
 
 - (void)stop {
-  if (self.patternTimer) {
-    [self.patternTimer invalidate];
-  }
-
   if (toneUnit)
   {
     AudioOutputUnitStop(toneUnit);
@@ -145,38 +127,7 @@ void ToneInterruptionListener(void *inClientData, UInt32 inInterruptionState);
   }
 }
 
-- (void)playPattern:(NSArray *)pattern withRepeat:(BOOL)repeat {
-  self.pattern = pattern;
-  self.patternIndex = 0;
-  self.patternShouldRepeat = repeat;
-  [self playPatternSegment];
-}
-
-- (void)playPatternSegment {
-  if (self.patternIndex == [self.pattern count])
-  {
-    if (self.patternShouldRepeat) {
-      self.patternIndex = 0;
-      [NSTimer scheduledTimerWithTimeInterval:0 target:self selector:@selector(playPatternSegment) userInfo:nil repeats:NO];
-      return;
-    }
-    else {
-      [self stop];
-      return;
-    }
-  }
-
-  TGPatternSegment *segment = [self.pattern objectAtIndex:self.patternIndex];
-  self.frequency = segment.frequency;
-  if (!self.isPlaying) {
-    [self start];
-  }
-  self.patternIndex += 1;
-  self.patternTimer = [NSTimer scheduledTimerWithTimeInterval:segment.duration target:self selector:@selector(playPatternSegment) userInfo:nil repeats:NO];
-}
-
 - (void)cleanup {
-  AudioSessionSetActive(false);
 }
 
 // from ToneGeneratorViewController:
@@ -191,8 +142,7 @@ OSStatus RenderTone(
 
 {
   // Get the tone parameters out of the view controller
-  MGToneGenerator *toneGenerator =
-  (__bridge MGToneGenerator *)inRefCon;
+  MGToneGenerator *toneGenerator = (__bridge MGToneGenerator *)inRefCon;
   double amplitude = toneGenerator.amplitude;
   double theta = toneGenerator.theta;
   double theta_increment = 2.0 * M_PI * toneGenerator.frequency / toneGenerator.sampleRate;
@@ -221,8 +171,7 @@ OSStatus RenderTone(
 
 void ToneInterruptionListener(void *inClientData, UInt32 inInterruptionState)
 {
-  MGToneGenerator *toneGenerator =
-  (__bridge MGToneGenerator *)inClientData;
+  MGToneGenerator *toneGenerator = (__bridge MGToneGenerator *)inClientData;
 
   [toneGenerator stop];
 }
@@ -280,9 +229,5 @@ void ToneInterruptionListener(void *inClientData, UInt32 inInterruptionState)
                               sizeof(AudioStreamBasicDescription));
   NSAssert1(err == noErr, @"Error setting stream format: %hd", err);
 }
-
-@end
-
-@implementation TGPatternSegment
 
 @end
