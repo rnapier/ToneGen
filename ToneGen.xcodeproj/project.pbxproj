@@ -12,6 +12,8 @@
 		FBD58E7F19619FE6008BBD34 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FBD58E7D19619FE6008BBD34 /* Main.storyboard */; };
 		FBD58E8119619FE6008BBD34 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FBD58E8019619FE6008BBD34 /* Images.xcassets */; };
 		FBD58E8D19619FE6008BBD34 /* ToneGenTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBD58E8C19619FE6008BBD34 /* ToneGenTests.swift */; };
+		FBD58E971961B6D6008BBD34 /* ToneGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBD58E961961B6D6008BBD34 /* ToneGenerator.swift */; };
+		FBFC2F061961C2FD00D42CE8 /* MGToneGenerator.m in Sources */ = {isa = PBXBuildFile; fileRef = FBFC2F051961C2FD00D42CE8 /* MGToneGenerator.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -34,6 +36,10 @@
 		FBD58E8619619FE6008BBD34 /* ToneGenTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ToneGenTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		FBD58E8B19619FE6008BBD34 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FBD58E8C19619FE6008BBD34 /* ToneGenTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToneGenTests.swift; sourceTree = "<group>"; };
+		FBD58E961961B6D6008BBD34 /* ToneGenerator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ToneGenerator.swift; sourceTree = "<group>"; };
+		FBFC2F001961C17C00D42CE8 /* ToneGen-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ToneGen-Bridging-Header.h"; sourceTree = "<group>"; };
+		FBFC2F041961C2FD00D42CE8 /* MGToneGenerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MGToneGenerator.h; sourceTree = "<group>"; };
+		FBFC2F051961C2FD00D42CE8 /* MGToneGenerator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MGToneGenerator.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -57,6 +63,8 @@
 		FBD58E6B19619FE6008BBD34 = {
 			isa = PBXGroup;
 			children = (
+				FBFC2F041961C2FD00D42CE8 /* MGToneGenerator.h */,
+				FBFC2F051961C2FD00D42CE8 /* MGToneGenerator.m */,
 				FBD58E7619619FE6008BBD34 /* ToneGen */,
 				FBD58E8919619FE6008BBD34 /* ToneGenTests */,
 				FBD58E7519619FE6008BBD34 /* Products */,
@@ -77,9 +85,11 @@
 			children = (
 				FBD58E7919619FE6008BBD34 /* AppDelegate.swift */,
 				FBD58E7B19619FE6008BBD34 /* ViewController.swift */,
+				FBD58E961961B6D6008BBD34 /* ToneGenerator.swift */,
 				FBD58E7D19619FE6008BBD34 /* Main.storyboard */,
 				FBD58E8019619FE6008BBD34 /* Images.xcassets */,
 				FBD58E7719619FE6008BBD34 /* Supporting Files */,
+				FBFC2F001961C17C00D42CE8 /* ToneGen-Bridging-Header.h */,
 			);
 			path = ToneGen;
 			sourceTree = "<group>";
@@ -209,6 +219,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				FBD58E7C19619FE6008BBD34 /* ViewController.swift in Sources */,
+				FBFC2F061961C2FD00D42CE8 /* MGToneGenerator.m in Sources */,
+				FBD58E971961B6D6008BBD34 /* ToneGenerator.swift in Sources */,
 				FBD58E7A19619FE6008BBD34 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -327,9 +339,12 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CLANG_ENABLE_MODULES = YES;
 				INFOPLIST_FILE = ToneGen/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "ToneGen/ToneGen-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
 		};
@@ -338,9 +353,11 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CLANG_ENABLE_MODULES = YES;
 				INFOPLIST_FILE = ToneGen/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "ToneGen/ToneGen-Bridging-Header.h";
 			};
 			name = Release;
 		};
@@ -399,6 +416,7 @@
 				FBD58E9219619FE6008BBD34 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		FBD58E9319619FE6008BBD34 /* Build configuration list for PBXNativeTarget "ToneGenTests" */ = {
 			isa = XCConfigurationList;
@@ -407,6 +425,7 @@
 				FBD58E9519619FE6008BBD34 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

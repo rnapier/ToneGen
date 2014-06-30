@@ -10,16 +10,22 @@ import UIKit
 
 class ViewController: UIViewController {
                             
+  @IBOutlet var frequencySlider: UISlider
+  @IBOutlet var amplitudeSlider: UISlider
+  var toneGenerator: ToneGenerator!
+
   override func viewDidLoad() {
     super.viewDidLoad()
-    // Do any additional setup after loading the view, typically from a nib.
+    toneGenerator = ToneGenerator(frequency: Double(frequencySlider.value), amplitude: Double(amplitudeSlider.value))
   }
 
-  override func didReceiveMemoryWarning() {
-    super.didReceiveMemoryWarning()
-    // Dispose of any resources that can be recreated.
+  @IBAction func settingsDidChange() {
+    updateToneGenerator()
   }
 
-
+  func updateToneGenerator() {
+    toneGenerator.frequency = Double(frequencySlider.value)
+    toneGenerator.amplitude = Double(amplitudeSlider.value)
+  }
 }
 
