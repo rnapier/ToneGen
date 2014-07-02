@@ -13,7 +13,6 @@
 		FBD58E8119619FE6008BBD34 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FBD58E8019619FE6008BBD34 /* Images.xcassets */; };
 		FBD58E8D19619FE6008BBD34 /* ToneGenTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBD58E8C19619FE6008BBD34 /* ToneGenTests.swift */; };
 		FBD58E971961B6D6008BBD34 /* ToneGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBD58E961961B6D6008BBD34 /* ToneGenerator.swift */; };
-		FBFC2F061961C2FD00D42CE8 /* MGToneGenerator.m in Sources */ = {isa = PBXBuildFile; fileRef = FBFC2F051961C2FD00D42CE8 /* MGToneGenerator.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -219,7 +218,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				FBD58E7C19619FE6008BBD34 /* ViewController.swift in Sources */,
-				FBFC2F061961C2FD00D42CE8 /* MGToneGenerator.m in Sources */,
 				FBD58E971961B6D6008BBD34 /* ToneGenerator.swift in Sources */,
 				FBD58E7A19619FE6008BBD34 /* AppDelegate.swift in Sources */,
 			);

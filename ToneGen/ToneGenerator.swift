@@ -11,34 +11,43 @@ import AVFoundation
 
 class ToneGenerator {
 
-  let toneGenerator = MGToneGenerator()
+  var ae:AVAudioEngine
+  var player:AVAudioPlayerNode
+  var mixer:AVAudioMixerNode
+  var buffer:AVAudioPCMBuffer
 
-  var frequency: Double {
-  get {
-    return toneGenerator.frequency
-  }
-  set(newFreq) {
-    toneGenerator.frequency = newFreq
-  }
-  }
+  var frequency:Double
+  var amplitude:Double
 
-  var amplitude: Double {
-  get {
-    return toneGenerator.amplitude
-  }
-  set(newAmp) {
-    toneGenerator.amplitude = newAmp
-  }
+  init(frequency freq:Double, amplitude amp:Double){
+    frequency = freq
+    amplitude = amp
 
-  }
+    // initialize objects
+    ae = AVAudioEngine()
+    player = AVAudioPlayerNode()
+    mixer = ae.mainMixerNode;
+    buffer = AVAudioPCMBuffer(PCMFormat: player.outputFormatForBus(0), frameCapacity: 100)
+    buffer.frameLength = 100
 
-  init(frequency freq: Double, amplitude amp: Double) {
-    toneGenerator.frequency = freq
-    toneGenerator.amplitude = amp
-    toneGenerator.start()
-  }
+    // generate sine wave
+    var sr:Float = Float(mixer.outputFormatForBus(0).sampleRate)
+    var n_channels = mixer.outputFormatForBus(0).channelCount
 
-  deinit {
-    toneGenerator.stop()
+    for var i = 0; i < Int(buffer.frameLength); i+=Int(n_channels) {
+      var val = sinf(441.0*Float(i)*2*Float(M_PI)/sr)
+
+      buffer.floatChannelData.memory[i] = val * 0.5
+    }
+
+    // setup audio engine
+    ae.attachNode(player)
+    ae.connect(player, to: mixer, format: player.outputFormatForBus(0))
+    ae.startAndReturnError(nil)
+
+    // play player and buffer
+    player.play()
+    player.scheduleBuffer(buffer, atTime: nil, options: .Loops, completionHandler: nil)
+    
   }
 }
