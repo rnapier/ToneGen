@@ -23,8 +23,8 @@
                                     <rect key="frame" x="20" y="47" width="600" height="283"/>
                                 </variation>
                             </view>
-                            <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="800" minValue="40" maxValue="30000" translatesAutoresizingMaskIntoConstraints="NO" id="II5-6E-3fz">
-                                <rect key="frame" x="61" y="221" width="401" height="31"/>
+                            <slider opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="440" minValue="100" maxValue="8000" translatesAutoresizingMaskIntoConstraints="NO" id="II5-6E-3fz">
+                                <rect key="frame" x="117" y="221" width="345" height="31"/>
                                 <variation key="heightClass=regular-widthClass=regular" ambiguous="YES" misplaced="YES">
                                     <rect key="frame" x="61" y="221" width="561" height="31"/>
                                 </variation>
@@ -44,8 +44,8 @@
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="C0e-i3-90A">
-                                <rect key="frame" x="61" y="258" width="401" height="31"/>
+                            <slider opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="C0e-i3-90A">
+                                <rect key="frame" x="137" y="258" width="325" height="31"/>
                                 <variation key="heightClass=regular-widthClass=regular" ambiguous="YES" misplaced="YES">
                                     <rect key="frame" x="61" y="258" width="561" height="31"/>
                                 </variation>
@@ -53,6 +53,12 @@
                                     <action selector="settingsDidChange" destination="BYZ-38-t0r" eventType="valueChanged" id="x1o-9N-3tU"/>
                                 </connections>
                             </slider>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="440" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="q0I-Ez-TFp">
+                                <rect key="frame" x="63" y="225" width="48" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
@@ -65,6 +71,7 @@
                             <constraint firstItem="sF3-pv-t4c" firstAttribute="top" secondItem="i53-Xx-iEt" secondAttribute="bottom" constant="21" id="Txf-96-6Cu"/>
                             <constraint firstAttribute="trailing" secondItem="C0e-i3-90A" secondAttribute="trailing" constant="20" id="UPS-QG-qpN"/>
                             <constraint firstItem="i53-Xx-iEt" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="20" id="VBs-HP-9Jm"/>
+                            <constraint firstItem="q0I-Ez-TFp" firstAttribute="leading" secondItem="i53-Xx-iEt" secondAttribute="trailing" constant="8" id="WJO-nt-oEd"/>
                             <constraint firstItem="C0e-i3-90A" firstAttribute="leading" secondItem="sF3-pv-t4c" secondAttribute="trailing" constant="7" id="eNB-nM-3Yu"/>
                             <constraint firstItem="i53-Xx-iEt" firstAttribute="top" secondItem="bt7-a7-1f3" secondAttribute="bottom" constant="55" id="gaS-2c-zxs"/>
                             <constraint firstAttribute="trailing" secondItem="bt7-a7-1f3" secondAttribute="trailing" constant="20" id="klH-SA-xjc"/>
@@ -74,6 +81,7 @@
                     </view>
                     <connections>
                         <outlet property="amplitudeSlider" destination="C0e-i3-90A" id="lv2-H6-K4Q"/>
+                        <outlet property="frequencyLabel" destination="q0I-Ez-TFp" id="Bl5-yG-QR9"/>
                         <outlet property="frequencySlider" destination="II5-6E-3fz" id="qaw-bl-kBr"/>
                     </connections>
                 </viewController>

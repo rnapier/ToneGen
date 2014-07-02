@@ -26,6 +26,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		FBC5A98F196486F700019F47 /* MyPlayground.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = MyPlayground.playground; sourceTree = "<group>"; };
 		FBD58E7419619FE6008BBD34 /* ToneGen.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ToneGen.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FBD58E7819619FE6008BBD34 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FBD58E7919619FE6008BBD34 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -37,8 +38,6 @@
 		FBD58E8C19619FE6008BBD34 /* ToneGenTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToneGenTests.swift; sourceTree = "<group>"; };
 		FBD58E961961B6D6008BBD34 /* ToneGenerator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ToneGenerator.swift; sourceTree = "<group>"; };
 		FBFC2F001961C17C00D42CE8 /* ToneGen-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ToneGen-Bridging-Header.h"; sourceTree = "<group>"; };
-		FBFC2F041961C2FD00D42CE8 /* MGToneGenerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MGToneGenerator.h; sourceTree = "<group>"; };
-		FBFC2F051961C2FD00D42CE8 /* MGToneGenerator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MGToneGenerator.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,8 +61,7 @@
 		FBD58E6B19619FE6008BBD34 = {
 			isa = PBXGroup;
 			children = (
-				FBFC2F041961C2FD00D42CE8 /* MGToneGenerator.h */,
-				FBFC2F051961C2FD00D42CE8 /* MGToneGenerator.m */,
+				FBC5A98F196486F700019F47 /* MyPlayground.playground */,
 				FBD58E7619619FE6008BBD34 /* ToneGen */,
 				FBD58E8919619FE6008BBD34 /* ToneGenTests */,
 				FBD58E7519619FE6008BBD34 /* Products */,

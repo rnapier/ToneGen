@@ -9,45 +9,34 @@
 import Foundation
 import AVFoundation
 
-class ToneGenerator {
+class ToneGenerator : AVAudioPlayerNode {
 
-  var ae:AVAudioEngine
-  var player:AVAudioPlayerNode
-  var mixer:AVAudioMixerNode
-  var buffer:AVAudioPCMBuffer
+  var buffer:AVAudioPCMBuffer!
 
-  var frequency:Double
-  var amplitude:Double
+  init(frequency:Float, amplitude:Float, format:AVAudioFormat){
+    super.init()
 
-  init(frequency freq:Double, amplitude amp:Double){
-    frequency = freq
-    amplitude = amp
+    let sr:Float = Float(format.sampleRate)
+    let samples = AVAudioFrameCount(1*sr/frequency)
 
-    // initialize objects
-    ae = AVAudioEngine()
-    player = AVAudioPlayerNode()
-    mixer = ae.mainMixerNode;
-    buffer = AVAudioPCMBuffer(PCMFormat: player.outputFormatForBus(0), frameCapacity: 100)
-    buffer.frameLength = 100
+    buffer = AVAudioPCMBuffer(PCMFormat: format, frameCapacity: samples)
+    buffer.frameLength = buffer.frameCapacity
 
     // generate sine wave
-    var sr:Float = Float(mixer.outputFormatForBus(0).sampleRate)
-    var n_channels = mixer.outputFormatForBus(0).channelCount
+    let channels = Int(format.channelCount)
+    var totalStride = channels * buffer.stride
 
-    for var i = 0; i < Int(buffer.frameLength); i+=Int(n_channels) {
-      var val = sinf(441.0*Float(i)*2*Float(M_PI)/sr)
-
-      buffer.floatChannelData.memory[i] = val * 0.5
+    for var t = 0; t < Int(buffer.frameCapacity); t += totalStride {
+      let w = Float(2*M_PI)*frequency
+      let value = amplitude * sinf(w*Float(t)/sr)
+      for var c = 0; c < channels; c++ {
+        buffer.floatChannelData.memory[t+c] = Float(value)
+      }
     }
+  }
 
-    // setup audio engine
-    ae.attachNode(player)
-    ae.connect(player, to: mixer, format: player.outputFormatForBus(0))
-    ae.startAndReturnError(nil)
-
-    // play player and buffer
-    player.play()
-    player.scheduleBuffer(buffer, atTime: nil, options: .Loops, completionHandler: nil)
-    
+  override func play()  {
+    super.play()
+    scheduleBuffer(buffer, atTime: nil, options: .Loops, completionHandler: nil)
   }
 }
