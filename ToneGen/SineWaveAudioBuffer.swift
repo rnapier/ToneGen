@@ -30,7 +30,7 @@ class SineWaveAudioBuffer : AVAudioPCMBuffer {
 
     let mem = floatChannelData.memory
 
-    for var t = 0; t < Int(frameCapacity); t += totalStride {
+    for var t = 0; t < Int(frameLength); t += totalStride {
       let value = amplitude * sinf(w*Float(t)/sr)
       for var c = 0; c < numChan; c++ {
         mem[t+c] = value

@@ -2,6 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6154.21" systemVersion="13E28" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6153.13"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
     </dependencies>
     <scenes>
         <!--View Controller-->
@@ -16,9 +17,12 @@
                         <rect key="frame" x="0.0" y="0.0" width="480" height="480"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" placeholderIntrinsicWidth="440" placeholderIntrinsicHeight="123" translatesAutoresizingMaskIntoConstraints="NO" id="bt7-a7-1f3">
+                            <view contentMode="scaleToFill" placeholderIntrinsicWidth="440" placeholderIntrinsicHeight="123" translatesAutoresizingMaskIntoConstraints="NO" id="bt7-a7-1f3" customClass="AudioWaveView" customModule="ToneGen" customModuleProvider="target">
                                 <rect key="frame" x="20" y="47" width="440" height="123"/>
-                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="bt7-a7-1f3" secondAttribute="height" multiplier="440:123" id="WM1-wf-zAR"/>
+                                </constraints>
                                 <variation key="heightClass=regular-widthClass=regular" ambiguous="YES" misplaced="YES">
                                     <rect key="frame" x="20" y="47" width="600" height="283"/>
                                 </variation>
@@ -83,6 +87,7 @@
                     </view>
                     <connections>
                         <outlet property="amplitudeSlider" destination="C0e-i3-90A" id="lv2-H6-K4Q"/>
+                        <outlet property="audioWaveView" destination="bt7-a7-1f3" id="pPe-cC-9hJ"/>
                         <outlet property="frequencyLabel" destination="q0I-Ez-TFp" id="Bl5-yG-QR9"/>
                         <outlet property="frequencySlider" destination="II5-6E-3fz" id="qaw-bl-kBr"/>
                     </connections>

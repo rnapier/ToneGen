@@ -14,6 +14,7 @@ class ViewController: UIViewController {
   @IBOutlet var frequencySlider: UISlider
   @IBOutlet var amplitudeSlider: UISlider
   @IBOutlet var frequencyLabel: UILabel
+  @IBOutlet var audioWaveView: AudioWaveView
 
   var toneGenerator: ToneGenerator!
 

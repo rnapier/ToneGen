@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		FBAC3C3D19659AD300A5AC60 /* SineWaveAudioBuffer.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBAC3C3C19659AD300A5AC60 /* SineWaveAudioBuffer.swift */; };
+		FBAC3C3F1965B36700A5AC60 /* AudioWaveView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBAC3C3E1965B36700A5AC60 /* AudioWaveView.swift */; };
 		FBD58E7A19619FE6008BBD34 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBD58E7919619FE6008BBD34 /* AppDelegate.swift */; };
 		FBD58E7C19619FE6008BBD34 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBD58E7B19619FE6008BBD34 /* ViewController.swift */; };
 		FBD58E7F19619FE6008BBD34 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FBD58E7D19619FE6008BBD34 /* Main.storyboard */; };
@@ -28,6 +29,7 @@
 
 /* Begin PBXFileReference section */
 		FBAC3C3C19659AD300A5AC60 /* SineWaveAudioBuffer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SineWaveAudioBuffer.swift; sourceTree = "<group>"; };
+		FBAC3C3E1965B36700A5AC60 /* AudioWaveView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AudioWaveView.swift; sourceTree = "<group>"; };
 		FBC5A98F196486F700019F47 /* MyPlayground.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = MyPlayground.playground; sourceTree = "<group>"; };
 		FBD58E7419619FE6008BBD34 /* ToneGen.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ToneGen.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FBD58E7819619FE6008BBD34 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -86,6 +88,7 @@
 				FBD58E7B19619FE6008BBD34 /* ViewController.swift */,
 				FBD58E961961B6D6008BBD34 /* ToneGenerator.swift */,
 				FBAC3C3C19659AD300A5AC60 /* SineWaveAudioBuffer.swift */,
+				FBAC3C3E1965B36700A5AC60 /* AudioWaveView.swift */,
 				FBD58E7D19619FE6008BBD34 /* Main.storyboard */,
 				FBD58E8019619FE6008BBD34 /* Images.xcassets */,
 				FBD58E7719619FE6008BBD34 /* Supporting Files */,
@@ -222,6 +225,7 @@
 				FBD58E971961B6D6008BBD34 /* ToneGenerator.swift in Sources */,
 				FBAC3C3D19659AD300A5AC60 /* SineWaveAudioBuffer.swift in Sources */,
 				FBD58E7A19619FE6008BBD34 /* AppDelegate.swift in Sources */,
+				FBAC3C3F1965B36700A5AC60 /* AudioWaveView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
