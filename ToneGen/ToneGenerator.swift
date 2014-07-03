@@ -11,32 +11,42 @@ import AVFoundation
 
 class ToneGenerator : AVAudioPlayerNode {
 
-  var buffer:SineWaveAudioBuffer
+  var buffer:SineWaveAudioBuffer?
 
   var frequency:Float {
-  didSet(newFrequency) {
-    buffer = SineWaveAudioBuffer(frequency:newFrequency, amplitude:amplitude, format:format)
+  didSet(freq) {
+    updateTone()
   }
   }
 
   var amplitude:Float {
-  didSet(newAmplitude) {
-    buffer = SineWaveAudioBuffer(frequency:frequency, amplitude:newAmplitude, format:format)
+  didSet(amp) {
+    updateTone()
   }
   }
 
   let format:AVAudioFormat
 
-  init(frequency f:Float, amplitude a:Float, format form:AVAudioFormat){
-    frequency = f
-    amplitude = a
-    format = form
-    buffer = SineWaveAudioBuffer(frequency:frequency, amplitude:amplitude, format:format)
+  init(frequency freq:Float, amplitude amp:Float, format fmt:AVAudioFormat){
+    frequency = freq
+    amplitude = amp
+    format = fmt
     super.init()
+  }
+
+  convenience init(format fmt:AVAudioFormat) {
+    self.init(frequency:0, amplitude:0, format:fmt)
   }
 
   override func play()  {
     super.play()
-    scheduleBuffer(buffer, atTime: nil, options: .Loops, completionHandler: nil)
+    updateTone()
+  }
+
+  func updateTone() {
+    if (engine != nil) {
+      buffer = SineWaveAudioBuffer(frequency:frequency, amplitude:amplitude, format:format)
+      scheduleBuffer(buffer, atTime: nil, options: .Loops | .InterruptsAtLoop, completionHandler: nil)
+    }
   }
 }

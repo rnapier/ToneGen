@@ -23,10 +23,11 @@ class ViewController: UIViewController {
     super.viewDidLoad()
 
     let mixer = engine.mainMixerNode;
-    toneGenerator = ToneGenerator(frequency: frequencySlider.value, amplitude: amplitudeSlider.value, format:mixer.outputFormatForBus(0))
+    toneGenerator = ToneGenerator(format:mixer.outputFormatForBus(0))
+    updateToneGenerator()
+
     engine.attachNode(toneGenerator)
     engine.connect(toneGenerator, to: mixer, format: toneGenerator.outputFormatForBus(0))
-
     engine.startAndReturnError(nil)
 
     toneGenerator.play()
@@ -34,21 +35,12 @@ class ViewController: UIViewController {
 
   @IBAction func settingsDidChange() {
     updateToneGenerator()
-    toneGenerator.play()
   }
 
   func updateToneGenerator() {
-    if let tg = toneGenerator {
-      tg.stop()
-      engine.detachNode(tg)
-    }
-
-    let mixer = engine.mainMixerNode;
-
+    toneGenerator.amplitude = amplitudeSlider.value
+    toneGenerator.frequency = frequencySlider.value
     frequencyLabel.text = NSString(format:"%d", Int(frequencySlider.value))
-    toneGenerator = ToneGenerator(frequency: frequencySlider.value, amplitude: amplitudeSlider.value, format:mixer.outputFormatForBus(0))
-    engine.attachNode(toneGenerator)
-    engine.connect(toneGenerator, to: mixer, format: toneGenerator.outputFormatForBus(0))
   }
 }
 
