@@ -11,28 +11,28 @@ import AVFoundation
 
 class ToneGenerator : AVAudioPlayerNode {
 
-  var buffer:AVAudioPCMBuffer!
+  var buffer:SineWaveAudioBuffer
 
-  init(frequency:Float, amplitude:Float, format:AVAudioFormat){
+  var frequency:Float {
+  didSet(newFrequency) {
+    buffer = SineWaveAudioBuffer(frequency:newFrequency, amplitude:amplitude, format:format)
+  }
+  }
+
+  var amplitude:Float {
+  didSet(newAmplitude) {
+    buffer = SineWaveAudioBuffer(frequency:frequency, amplitude:newAmplitude, format:format)
+  }
+  }
+
+  let format:AVAudioFormat
+
+  init(frequency f:Float, amplitude a:Float, format form:AVAudioFormat){
+    frequency = f
+    amplitude = a
+    format = form
+    buffer = SineWaveAudioBuffer(frequency:frequency, amplitude:amplitude, format:format)
     super.init()
-
-    let sr:Float = Float(format.sampleRate)
-    let samples = AVAudioFrameCount(1*sr/frequency)
-
-    buffer = AVAudioPCMBuffer(PCMFormat: format, frameCapacity: samples)
-    buffer.frameLength = buffer.frameCapacity
-
-    // generate sine wave
-    let channels = Int(format.channelCount)
-    var totalStride = channels * buffer.stride
-
-    for var t = 0; t < Int(buffer.frameCapacity); t += totalStride {
-      let w = Float(2*M_PI)*frequency
-      let value = amplitude * sinf(w*Float(t)/sr)
-      for var c = 0; c < channels; c++ {
-        buffer.floatChannelData.memory[t+c] = Float(value)
-      }
-    }
   }
 
   override func play()  {

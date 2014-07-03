@@ -14,22 +14,20 @@ class ViewController: UIViewController {
   @IBOutlet var frequencySlider: UISlider
   @IBOutlet var amplitudeSlider: UISlider
   @IBOutlet var frequencyLabel: UILabel
+
   var toneGenerator: ToneGenerator!
 
-  var ae:AVAudioEngine!
-
+  let engine = AVAudioEngine()
 
   override func viewDidLoad() {
     super.viewDidLoad()
 
-    ae = AVAudioEngine()
-
-    let mixer = ae.mainMixerNode;
+    let mixer = engine.mainMixerNode;
     toneGenerator = ToneGenerator(frequency: frequencySlider.value, amplitude: amplitudeSlider.value, format:mixer.outputFormatForBus(0))
-    ae.attachNode(toneGenerator)
-    ae.connect(toneGenerator, to: mixer, format: toneGenerator.outputFormatForBus(0))
+    engine.attachNode(toneGenerator)
+    engine.connect(toneGenerator, to: mixer, format: toneGenerator.outputFormatForBus(0))
 
-    ae.startAndReturnError(nil)
+    engine.startAndReturnError(nil)
 
     toneGenerator.play()
   }
@@ -42,15 +40,15 @@ class ViewController: UIViewController {
   func updateToneGenerator() {
     if let tg = toneGenerator {
       tg.stop()
-      ae.detachNode(tg)
+      engine.detachNode(tg)
     }
 
-    let mixer = ae.mainMixerNode;
+    let mixer = engine.mainMixerNode;
 
     frequencyLabel.text = NSString(format:"%d", Int(frequencySlider.value))
     toneGenerator = ToneGenerator(frequency: frequencySlider.value, amplitude: amplitudeSlider.value, format:mixer.outputFormatForBus(0))
-    ae.attachNode(toneGenerator)
-    ae.connect(toneGenerator, to: mixer, format: toneGenerator!.outputFormatForBus(0))
+    engine.attachNode(toneGenerator)
+    engine.connect(toneGenerator, to: mixer, format: toneGenerator.outputFormatForBus(0))
   }
 }
 
