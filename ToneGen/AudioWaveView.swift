@@ -28,19 +28,21 @@ class AudioWaveView : UIView {
       let width = bounds.width
       let height = bounds.height
       let zeroY = CGRectGetMidY(bounds)
-      let pixelsPerSample = Float(width)/Float(firstChannel.count)
+      let pixelsPerSample:Float = 1
 
       var path = UIBezierPath()
       path.moveToPoint(CGPointMake(0, zeroY))
 
-      for var t = 0; t < firstChannel.count; t++ {
-        path.addLineToPoint(CGPointMake(
-          Float(t)*pixelsPerSample,
-          firstChannel[Int(t)] * Float(height) + Float(zeroY)))
+      var x:CGFloat = 0
+      while x < width {
+        for var t = 0; t < firstChannel.count; t++ {
+          path.addLineToPoint(CGPointMake(
+            x,
+            firstChannel[Int(t)] * Float(height/2) + Float(zeroY)))
+          x += pixelsPerSample
+        }
+        path.stroke()
       }
-
-      UIColor.blackColor().set()
-      path.stroke()
     }
   }
 
