@@ -32,6 +32,8 @@ class ViewController: UIViewController {
     engine.startAndReturnError(nil)
 
     toneGenerator.play()
+
+    audioWaveView.waveForm = toneGenerator.buffer
   }
 
   @IBAction func settingsDidChange() {
@@ -42,6 +44,7 @@ class ViewController: UIViewController {
     toneGenerator.amplitude = amplitudeSlider.value
     toneGenerator.frequency = frequencySlider.value
     frequencyLabel.text = NSString(format:"%d", Int(frequencySlider.value))
+    audioWaveView.waveForm = toneGenerator.buffer
   }
 }
 

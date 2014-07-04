@@ -10,29 +10,38 @@ import UIKit
 import AVFoundation
 
 class AudioWaveView : UIView {
-  var waveForm : AVAudioPCMBuffer?
+  var waveForm : SineWaveAudioBuffer? {
+  didSet(w) {
+    setNeedsDisplay()
+  }
+  }
 
   init(coder aDecoder: NSCoder!) {
     super.init(coder:aDecoder)
     layer.borderWidth = 1
   }
 
-//  override func drawRect(rect: CGRect) {
-//    if let wave = waveForm {
-//      let numChan = Int(wave.format.channelCount)
-//      let totalStride = numChan * wave.stride
-//      let length = wave.frameLength
-//
-//      let memory = wave.floatChannelData.memory
-//
-//      let data = Float[]()
-//      for var t = 0; t < Int(frameCapacity); t += totalStride {
-//        let value = amplitude * sinf(w*Float(t)/sr)
-//        for var c = 0; c < numChan; c++ {
-//          mem[t+c] = value
-//        }
-//      }
-//    }
-//  }
+  override func drawRect(rect: CGRect) {
+    if let wave = waveForm {
+      let firstChannel = wave.firstChannel()
+
+      let width = bounds.width
+      let height = bounds.height
+      let zeroY = CGRectGetMidY(bounds)
+      let pixelsPerSample = Float(width)/Float(firstChannel.count)
+
+      var path = UIBezierPath()
+      path.moveToPoint(CGPointMake(0, zeroY))
+
+      for var t = 0; t < firstChannel.count; t++ {
+        path.addLineToPoint(CGPointMake(
+          Float(t)*pixelsPerSample,
+          firstChannel[Int(t)] * Float(height) + Float(zeroY)))
+      }
+
+      UIColor.blackColor().set()
+      path.stroke()
+    }
+  }
 
 }

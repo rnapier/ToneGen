@@ -25,16 +25,28 @@ class SineWaveAudioBuffer : AVAudioPCMBuffer {
     frameLength = frameCapacity
 
     let numChan = Int(format.channelCount)
-    let totalStride = numChan * stride
     let w = Float(2*M_PI) * frequency
 
-    let mem = floatChannelData.memory
+    let channels = UnsafeArray(start: floatChannelData, length: numChan)
 
-    for var t = 0; t < Int(frameLength); t += totalStride {
+    for var t = 0; t < Int(frameLength); t++ {
       let value = amplitude * sinf(w*Float(t)/sr)
-      for var c = 0; c < numChan; c++ {
-        mem[t+c] = value
+      for var c = 0; c < 1; c++ {
+        channels[c][t] = value
       }
     }
+  }
+
+  func firstChannel() -> Float[] {
+    // FIXME: Shouldn't make a copy here
+    var result = Float[]()
+
+    let channels = UnsafeArray(start: floatChannelData, length: Int(format.channelCount))
+    let firstChannel = channels[0]
+
+    for t in 0..Int(frameLength) {
+      result += firstChannel[t]
+    }
+    return result
   }
 }
