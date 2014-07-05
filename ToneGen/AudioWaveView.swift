@@ -33,19 +33,25 @@ class AudioWaveView : UIView {
       let xScale = Float(1)
       let yScale = Float(height/2)
 
-      var path = UIBezierPath()
-      path.moveToPoint(CGPointMake(0, yZero))
-
-      var x:CGFloat = 0
-      while x < width {
-        for var t = 0; x < width && t < valCount; t++ {
-          let y = vals[t] * yScale + yZero
-          path.addLineToPoint(CGPointMake(x, y))
-          x += xScale
-        }
-        path.stroke()
+      // Build one cycle
+      let cycle = UIBezierPath()
+      cycle.moveToPoint(CGPointMake(0, yZero))
+      for var t = 0; t < valCount; t++ {
+        let y = vals[t] * yScale + yZero
+        cycle.addLineToPoint(CGPointMake(Float(t), y))
       }
+      cycle.addLineToPoint(CGPointMake(Float(valCount), vals[0] * yScale + yZero))
+
+      let transform = CGAffineTransformMakeTranslation(Float(valCount), 0)
+
+      var path = UIBezierPath()
+      do {
+        path.appendPath(cycle)
+        cycle.applyTransform(transform)
+      } while path.currentPoint.x < width
+
+      path.stroke()
     }
   }
-
+  
 }
