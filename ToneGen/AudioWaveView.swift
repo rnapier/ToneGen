@@ -10,7 +10,7 @@ import UIKit
 import AVFoundation
 
 class AudioWaveView : UIView {
-  var waveForm : SineWaveAudioBuffer? {
+  var waveForm : AVAudioPCMBuffer? {
   didSet(w) {
     setNeedsDisplay()
   }
