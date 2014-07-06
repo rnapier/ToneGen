@@ -7,10 +7,13 @@
 //
 
 import UIKit
-import AVFoundation
+
+protocol GraphableWaveForm {
+  func graphableValues() -> CGFloat[]
+}
 
 class AudioWaveView : UIView {
-  var waveForm : AVAudioPCMBuffer? {
+  var waveForm : GraphableWaveForm? {
   didSet(w) {
     setNeedsDisplay()
   }
@@ -23,42 +26,42 @@ class AudioWaveView : UIView {
   }
 
   override func drawRect(rect: CGRect) {
-    if let wave = waveForm {
-      let vals = wave.firstChannel()
+    if let waveForm = waveForm {
+      let vals = waveForm.graphableValues()
       let valCount = vals.count
 
       let width  = bounds.width
       let height = bounds.height
 
-      let yZero  = Float(CGRectGetMidY(bounds))
-      let xScale = Float(1)
-      let yScale = Float(height/2)
+      let yZero  = CGFloat(CGRectGetMidY(bounds))
+      let xScale = CGFloat(1)
+      let yScale = CGFloat(height/2)
 
       let transform = CGAffineTransformScale(
         CGAffineTransformMakeTranslation(0, yZero),
         xScale, yScale)
 
       let cyclePath = cyclePathWithValues(vals)
-      let path = pathFromCycle(cyclePath, cycleWidth:Float(valCount), totalWidth:width)
+      let path = pathFromCycle(cyclePath, cycleWidth:CGFloat(valCount), totalWidth:width)
 
       path.applyTransform(transform)
       path.stroke()
     }
   }
 
-  func cyclePathWithValues(values:Float[]) -> UIBezierPath {
+  func cyclePathWithValues(values:CGFloat[]) -> UIBezierPath {
     let cycle = UIBezierPath()
     let valCount = values.count
 
     cycle.moveToPoint(CGPointZero)
     for t in 0..valCount {
-      cycle.addLineToPoint(CGPointMake(Float(t), values[t]))
+      cycle.addLineToPoint(CGPointMake(CGFloat(t), values[t]))
     }
-    cycle.addLineToPoint(CGPointMake(Float(valCount), values[0]))
+    cycle.addLineToPoint(CGPointMake(CGFloat(valCount), values[0]))
     return cycle
   }
 
-  func pathFromCycle(cycle: UIBezierPath, cycleWidth:Float, totalWidth:Float) -> UIBezierPath {
+  func pathFromCycle(cycle: UIBezierPath, cycleWidth:CGFloat, totalWidth:CGFloat) -> UIBezierPath {
     let cycleOffset = CGAffineTransformMakeTranslation(cycleWidth, 0)
     let path = UIBezierPath()
     do {
