@@ -23,28 +23,37 @@ class ViewController: UIViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
 
-    let mixer = engine.mainMixerNode;
-    toneGenerator = ToneGenerator(format:mixer.outputFormatForBus(0))
-    updateToneGenerator()
-
-    engine.attachNode(toneGenerator)
-    engine.connect(toneGenerator, to: mixer, format: toneGenerator.outputFormatForBus(0))
-    engine.startAndReturnError(nil)
-
-    toneGenerator.play()
-
-    audioWaveView.waveForm = toneGenerator.buffer
+    self.configureToneGenerator()
+    self.configureEngine()
+    self.toneGenerator.play()
+    self.updateWaveView()
   }
 
   @IBAction func settingsDidChange() {
-    updateToneGenerator()
+    self.updateToneGenerator()
+  }
+
+  func configureToneGenerator() {
+    let mixer = self.engine.mainMixerNode;
+    self.toneGenerator = ToneGenerator(format:mixer.outputFormatForBus(0))
+    self.updateToneGenerator()
+  }
+
+  func configureEngine() {
+    let eng = self.engine
+    eng.attachNode(self.toneGenerator)
+    eng.connect(self.toneGenerator, to: eng.mainMixerNode, format: nil)
+    eng.startAndReturnError(nil)  // FIXME: error check
+  }
+
+  func updateWaveView() {
+    self.audioWaveView.waveForm = self.toneGenerator.buffer
   }
 
   func updateToneGenerator() {
-    toneGenerator.amplitude = amplitudeSlider.value
-    toneGenerator.frequency = frequencySlider.value
-    frequencyLabel.text = NSString(format:"%d", Int(frequencySlider.value))
-    audioWaveView.waveForm = toneGenerator.buffer
+    self.toneGenerator.amplitude = self.amplitudeSlider.value
+    self.toneGenerator.frequency = self.frequencySlider.value
+    self.frequencyLabel.text = NSString(format:"%d", Int(frequencySlider.value))
+    self.updateWaveView()
   }
 }
-

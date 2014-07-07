@@ -22,32 +22,24 @@ class SineWaveAudioBuffer : AVAudioPCMBuffer {
 
     super.init(PCMFormat: format, frameCapacity: samples)
 
-    frameLength = frameCapacity
+    self.frameLength = self.frameCapacity
 
     let numChan = Int(format.channelCount)
     let w = Float(2*M_PI) * frequency
 
-//    let channels = UnsafeArray(start: floatChannelData, length: numChan)
-
-    for t in 0..<Int(frameLength) {
+    for t in 0..<Int(self.frameLength) {
       let value = amplitude * sinf(w*Float(t)/sr)
       for c in 0..<numChan {
-        floatChannelData[c][t] = value
+        self.floatChannelData[c][t] = value
       }
     }
   }
 }
 
 extension SineWaveAudioBuffer : GraphableWaveForm {
-  func graphableValues() -> [CGFloat] {
-
-    var result:[CGFloat] = [CGFloat](count:Int(frameLength), repeatedValue:0.0)
-
-    let firstChannel = floatChannelData[0]
-
-    for t in 0..<Int(frameLength) {
-      result[t] = CGFloat(firstChannel[t])
-    }
-    return result
+  func graphableValues() -> [Float] {
+    return [Float](UnsafeArray(
+      start: self.floatChannelData[0],
+      length: Int(self.frameLength)))
   }
 }

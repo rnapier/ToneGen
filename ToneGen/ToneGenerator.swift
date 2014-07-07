@@ -15,13 +15,13 @@ class ToneGenerator : AVAudioPlayerNode {
 
   var frequency:Float {
   didSet(freq) {
-    updateTone()
+    self.updateTone()
   }
   }
 
   var amplitude:Float {
   didSet(amp) {
-    updateTone()
+    self.updateTone()
   }
   }
 
@@ -40,13 +40,13 @@ class ToneGenerator : AVAudioPlayerNode {
 
   override func play()  {
     super.play()
-    updateTone()
+    self.updateTone()
   }
 
   func updateTone() {
-    if (engine != nil) {
-      buffer = SineWaveAudioBuffer(frequency:frequency, amplitude:amplitude, format:format)
-      scheduleBuffer(buffer, atTime: nil, options: .Loops | .InterruptsAtLoop, completionHandler: nil)
+    if (self.engine != nil) {
+      self.buffer = SineWaveAudioBuffer(frequency:self.frequency, amplitude:self.amplitude, format:self.format)
+      self.scheduleBuffer(self.buffer, atTime: nil, options: .Loops | .InterruptsAtLoop, completionHandler: nil)
     }
   }
 }
