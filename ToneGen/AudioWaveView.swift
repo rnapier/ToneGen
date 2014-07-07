@@ -9,7 +9,7 @@
 import UIKit
 
 protocol GraphableWaveForm {
-  func graphableValues() -> CGFloat[]
+  func graphableValues() -> [CGFloat]
 }
 
 class AudioWaveView : UIView {
@@ -49,12 +49,12 @@ class AudioWaveView : UIView {
     }
   }
 
-  func cyclePathWithValues(values:CGFloat[]) -> UIBezierPath {
+  func cyclePathWithValues(values:[CGFloat]) -> UIBezierPath {
     let cycle = UIBezierPath()
     let valCount = values.count
 
     cycle.moveToPoint(CGPointZero)
-    for t in 0..valCount {
+    for t in 0..<valCount {
       cycle.addLineToPoint(CGPointMake(CGFloat(t), values[t]))
     }
     cycle.addLineToPoint(CGPointMake(CGFloat(valCount), values[0]))
