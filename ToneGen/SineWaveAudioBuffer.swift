@@ -35,11 +35,3 @@ class SineWaveAudioBuffer : AVAudioPCMBuffer {
     }
   }
 }
-
-extension SineWaveAudioBuffer : GraphableWaveForm {
-  func graphableValues() -> [Float] {
-    return [Float](UnsafeArray(
-      start: self.floatChannelData[0],
-      length: Int(self.frameLength)))
-  }
-}

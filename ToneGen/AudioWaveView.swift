@@ -14,8 +14,10 @@ protocol GraphableWaveForm {
 
 class AudioWaveView : UIView {
   var waveForm : GraphableWaveForm? {
-  didSet(w) {
-    self.setNeedsDisplay()
+  didSet {
+    dispatch_async(dispatch_get_main_queue()) {
+      self.setNeedsDisplay()
+    }
   }
   }
 
@@ -26,12 +28,12 @@ class AudioWaveView : UIView {
   }
 
   override func drawRect(rect: CGRect) {
-    if let waveForm = self.waveForm {
+    if let waveForm = waveForm {
       let vals = waveForm.graphableValues()
       let valCount = vals.count
 
-      let width  = self.bounds.width
-      let height = self.bounds.height
+      let width  = bounds.width
+      let height = bounds.height
 
       let yZero  = CGRectGetMidY(bounds)
       let xScale = CGFloat(1)

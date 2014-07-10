@@ -9,6 +9,14 @@
 import UIKit
 import AVFoundation
 
+extension AVAudioPCMBuffer : GraphableWaveForm {
+  func graphableValues() -> [Float] {
+    return [Float](UnsafeArray(
+      start: self.floatChannelData[0],
+      length: Int(self.frameLength)))
+  }
+}
+
 class AudioViewController: UIViewController, UITableViewDataSource {
                             
   @IBOutlet var audioWaveView: AudioWaveView
@@ -34,6 +42,13 @@ class AudioViewController: UIViewController, UITableViewDataSource {
     engine.connect(tg, to:engine.mainMixerNode, format:nil)
     if audioModules.count == 0 {
       engine.startAndReturnError(nil)
+      let output = engine.outputNode
+
+      let block: AVAudioNodeTapBlock = {(buffer, time) in
+        self.audioWaveView.waveForm = buffer
+      }
+
+      output.installTapOnBus(0, bufferSize: AVAudioFrameCount(1000), format: nil, block: block)
     }
     tg.play()
 
