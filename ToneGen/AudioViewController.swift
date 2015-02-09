@@ -35,7 +35,7 @@ class AudioViewController: UIViewController, UITableViewDataSource {
     }
 
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("toneGenerator") as ToneGeneratorCell
+        let cell = tableView.dequeueReusableCellWithIdentifier("toneGenerator") as! ToneGeneratorCell
         cell.toneGenerator = audioModules[indexPath.row]
         return cell
     }
