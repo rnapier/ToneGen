@@ -21,7 +21,7 @@ class AudioWaveView : UIView {
   }
   }
 
-  required init(coder aDecoder: NSCoder) {
+  required init?(coder aDecoder: NSCoder) {
     super.init(coder:aDecoder)
     layer.borderWidth = 1
     layer.geometryFlipped = true
@@ -30,7 +30,6 @@ class AudioWaveView : UIView {
   override func drawRect(rect: CGRect) {
     if let waveForm = waveForm {
       let vals = waveForm.graphableValues()
-      let valCount = vals.count
 
       let width  = bounds.width
       let height = bounds.height
@@ -65,10 +64,10 @@ func cyclePathWithValues(values:[Float]) -> UIBezierPath {
 }
 
 
-func pathFromHorizontallyRepeatedCycle(cycle: UIBezierPath, #totalWidth:CGFloat) -> UIBezierPath {
+func pathFromHorizontallyRepeatedCycle(cycle: UIBezierPath, totalWidth:CGFloat) -> UIBezierPath {
   let cycleOffset = CGAffineTransformMakeTranslation(cycle.bounds.width, 0)
   let path = UIBezierPath()
-  do {
+  repeat {
     path.appendPath(cycle)
     cycle.applyTransform(cycleOffset)
   } while path.currentPoint.x < totalWidth

@@ -19,7 +19,7 @@ extension AVAudioPCMBuffer : GraphableWaveForm {
 
 class AudioViewController: UIViewController, UITableViewDataSource {
 
-    required init(coder aDecoder: NSCoder) {
+    required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
 
@@ -45,7 +45,7 @@ class AudioViewController: UIViewController, UITableViewDataSource {
         engine.attachNode(tg)
         engine.connect(tg, to:engine.mainMixerNode, format:nil)
         if audioModules.count == 0 {
-            engine.startAndReturnError(nil)
+            try! engine.start()
             let output = engine.outputNode
 
             let block: AVAudioNodeTapBlock = {(buffer, time) in
