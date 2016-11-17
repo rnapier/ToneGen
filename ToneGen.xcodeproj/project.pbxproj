@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		FB122085196B487500AE5D8C /* ToneGeneratorCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB122084196B487500AE5D8C /* ToneGeneratorCell.swift */; };
+		FB3D71FB1DDE51560090CC36 /* Logging.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB3D71FA1DDE51560090CC36 /* Logging.swift */; };
 		FBAC3C3D19659AD300A5AC60 /* SineWaveAudioBuffer.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBAC3C3C19659AD300A5AC60 /* SineWaveAudioBuffer.swift */; };
 		FBAC3C3F1965B36700A5AC60 /* AudioWaveView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBAC3C3E1965B36700A5AC60 /* AudioWaveView.swift */; };
 		FBD58E7A19619FE6008BBD34 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBD58E7919619FE6008BBD34 /* AppDelegate.swift */; };
@@ -30,6 +31,7 @@
 
 /* Begin PBXFileReference section */
 		FB122084196B487500AE5D8C /* ToneGeneratorCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ToneGeneratorCell.swift; sourceTree = "<group>"; };
+		FB3D71FA1DDE51560090CC36 /* Logging.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Logging.swift; sourceTree = "<group>"; };
 		FBAC3C3C19659AD300A5AC60 /* SineWaveAudioBuffer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SineWaveAudioBuffer.swift; sourceTree = "<group>"; };
 		FBAC3C3E1965B36700A5AC60 /* AudioWaveView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AudioWaveView.swift; sourceTree = "<group>"; };
 		FBC5A98F196486F700019F47 /* MyPlayground.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = MyPlayground.playground; sourceTree = "<group>"; };
@@ -86,6 +88,7 @@
 		FBD58E7619619FE6008BBD34 /* ToneGen */ = {
 			isa = PBXGroup;
 			children = (
+				FB3D71FA1DDE51560090CC36 /* Logging.swift */,
 				FBD58E7919619FE6008BBD34 /* AppDelegate.swift */,
 				FBD58E7B19619FE6008BBD34 /* AudioViewController.swift */,
 				FB122084196B487500AE5D8C /* ToneGeneratorCell.swift */,
@@ -174,11 +177,11 @@
 				TargetAttributes = {
 					FBD58E7319619FE6008BBD34 = {
 						CreatedOnToolsVersion = 6.0;
-						LastSwiftMigration = 0800;
+						LastSwiftMigration = 0810;
 					};
 					FBD58E8519619FE6008BBD34 = {
 						CreatedOnToolsVersion = 6.0;
-						LastSwiftMigration = 0800;
+						LastSwiftMigration = 0810;
 						TestTargetID = FBD58E7319619FE6008BBD34;
 					};
 				};
@@ -229,6 +232,7 @@
 				FBD58E7C19619FE6008BBD34 /* AudioViewController.swift in Sources */,
 				FBD58E971961B6D6008BBD34 /* ToneGenerator.swift in Sources */,
 				FBAC3C3D19659AD300A5AC60 /* SineWaveAudioBuffer.swift in Sources */,
+				FB3D71FB1DDE51560090CC36 /* Logging.swift in Sources */,
 				FBD58E7A19619FE6008BBD34 /* AppDelegate.swift in Sources */,
 				FB122085196B487500AE5D8C /* ToneGeneratorCell.swift in Sources */,
 				FBAC3C3F1965B36700A5AC60 /* AudioWaveView.swift in Sources */,
@@ -364,7 +368,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "ToneGen/ToneGen-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 2.3;
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
@@ -379,7 +383,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "net.robnapier.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "ToneGen/ToneGen-Bridging-Header.h";
-				SWIFT_VERSION = 2.3;
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};
@@ -400,7 +404,7 @@
 				METAL_ENABLE_DEBUG_INFO = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "net.robnapier.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 2.3;
+				SWIFT_VERSION = 3.0;
 				TEST_HOST = "$(BUNDLE_LOADER)";
 			};
 			name = Debug;
@@ -418,7 +422,7 @@
 				METAL_ENABLE_DEBUG_INFO = NO;
 				PRODUCT_BUNDLE_IDENTIFIER = "net.robnapier.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 2.3;
+				SWIFT_VERSION = 3.0;
 				TEST_HOST = "$(BUNDLE_LOADER)";
 			};
 			name = Release;

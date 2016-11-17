@@ -12,7 +12,7 @@ import AVFoundation
 extension AVAudioPCMBuffer : GraphableWaveForm {
     func graphableValues() -> [Float] {
         return [Float](UnsafeBufferPointer(
-            start: self.floatChannelData[0],
+            start: self.floatChannelData![0],
             count: Int(self.frameLength)))
     }
 }
@@ -30,19 +30,19 @@ class AudioViewController: UIViewController, UITableViewDataSource {
 
     let engine = AVAudioEngine()
 
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return audioModules.count
     }
 
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("toneGenerator") as! ToneGeneratorCell
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "toneGenerator") as! ToneGeneratorCell
         cell.toneGenerator = audioModules[indexPath.row]
         return cell
     }
 
-    @IBAction func addToneGenerator(sender: UIButton) {
-        let tg = ToneGenerator(frequency: 410, amplitude: 0.5, format: engine.mainMixerNode.outputFormatForBus(0))
-        engine.attachNode(tg)
+    @IBAction func addToneGenerator(_ sender: UIButton) {
+        let tg = ToneGenerator(frequency: 410, amplitude: 0.5, format: engine.mainMixerNode.outputFormat(forBus: 0))
+        engine.attach(tg)
         engine.connect(tg, to:engine.mainMixerNode, format:nil)
         if audioModules.count == 0 {
             try! engine.start()
@@ -54,7 +54,7 @@ class AudioViewController: UIViewController, UITableViewDataSource {
                 }
             }
 
-            output.installTapOnBus(0, bufferSize: AVAudioFrameCount(audioWaveView?.bounds.width ?? 0), format: nil, block: block)
+            output.installTap(onBus: 0, bufferSize: AVAudioFrameCount(audioWaveView?.bounds.width ?? 0), format: nil, block: block)
         }
         tg.play()
         

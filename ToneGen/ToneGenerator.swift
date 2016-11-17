@@ -9,45 +9,43 @@
 import Foundation
 import AVFoundation
 
-class ToneGenerator : AVAudioPlayerNode {
+class ToneGenerator: AVAudioPlayerNode {
 
-    var buffer:SineWaveAudioBuffer?
+    fileprivate var buffer: SineWaveAudioBuffer?
 
-    var frequency:Float {
-        didSet(freq) {
-            self.updateTone()
+    var frequency: Double {
+        didSet {
+            updateTone()
         }
     }
 
-    var amplitude:Float {
-        didSet(amp) {
-            self.updateTone()
+    var amplitude: Double {
+        didSet {
+            updateTone()
         }
     }
 
-    let format:AVAudioFormat
+    fileprivate let format: AVAudioFormat
 
-    init(frequency freq:Float, amplitude amp:Float, format fmt:AVAudioFormat){
-        frequency = freq
-        amplitude = amp
-        format = fmt
+    init(frequency: Double, amplitude: Double, format: AVAudioFormat) {
+        self.frequency = frequency
+        self.amplitude = amplitude
+        self.format = format
         super.init()
     }
 
-    convenience init(format fmt:AVAudioFormat) {
-        self.init(frequency:0, amplitude:0, format:fmt)
+    convenience init(format: AVAudioFormat) {
+        self.init(frequency: 0, amplitude: 0, format: format)
     }
 
-    override func play()  {
+    override func play() {
         super.play()
-        self.updateTone()
+        updateTone()
     }
 
     func updateTone() {
-        if (self.engine != nil) {
-            let buffer = SineWaveAudioBuffer(frequency:self.frequency, amplitude:self.amplitude, format:self.format)
-            self.scheduleBuffer(buffer, atTime: nil, options: [.Loops, .InterruptsAtLoop], completionHandler: nil)
-            self.buffer = buffer
-        }
+        guard self.engine != nil else { return }
+        buffer = SineWaveAudioBuffer(frequency: frequency, amplitude: amplitude, format: self.format)
+        scheduleBuffer(buffer!, at: nil, options: [.loops, .interruptsAtLoop], completionHandler: nil)
     }
 }

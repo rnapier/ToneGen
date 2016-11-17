@@ -18,8 +18,8 @@ class ToneGeneratorCell : UITableViewCell {
         didSet {
             if let tg = toneGenerator {
                 enabled = true
-                frequencySlider?.value = tg.frequency
-                amplitudeSlider?.value = tg.amplitude
+                frequencySlider?.value = Float(tg.frequency)
+                amplitudeSlider?.value = Float(tg.amplitude)
                 updateToneGenerator()
             }
             else {
@@ -30,8 +30,8 @@ class ToneGeneratorCell : UITableViewCell {
 
     var enabled:Bool = false {
         didSet {
-            frequencySlider?.enabled = enabled
-            amplitudeSlider?.enabled = enabled
+            frequencySlider?.isEnabled = enabled
+            amplitudeSlider?.isEnabled = enabled
         }
     }
 
@@ -53,16 +53,16 @@ class ToneGeneratorCell : UITableViewCell {
 
     func updateToneGenerator() {
         if let toneGenerator = toneGenerator {
-            toneGenerator.amplitude = self.amplitudeSlider?.value ?? 0
-            toneGenerator.frequency = self.frequencySlider?.value ?? 0
-            let formatter = NSNumberFormatter()
+            toneGenerator.amplitude = Double(self.amplitudeSlider?.value ?? 0)
+            toneGenerator.frequency = Double(self.frequencySlider?.value ?? 0)
+            let formatter = NumberFormatter()
             formatter.maximumFractionDigits = 0
             formatter.minimumFractionDigits = 0
-            frequencyLabel?.text = formatter.stringFromNumber(frequencySlider?.value ?? 0) ?? ""
+            frequencyLabel?.text = formatter.string(from: frequencySlider?.value as NSNumber? ?? 0) ?? ""
 
             formatter.maximumFractionDigits = 2
             formatter.minimumFractionDigits = 2
-            amplitudeLabel?.text = formatter.stringFromNumber(amplitudeSlider?.value ?? 0) ?? ""
+            amplitudeLabel?.text = formatter.string(from: amplitudeSlider?.value as NSNumber? ?? 0) ?? ""
 
         }
     }

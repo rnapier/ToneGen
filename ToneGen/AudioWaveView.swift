@@ -15,7 +15,7 @@ protocol GraphableWaveForm {
 class AudioWaveView : UIView {
   var waveForm : GraphableWaveForm? {
   didSet {
-    dispatch_async(dispatch_get_main_queue()) {
+    DispatchQueue.main.async {
       self.setNeedsDisplay()
     }
   }
@@ -24,52 +24,50 @@ class AudioWaveView : UIView {
   required init?(coder aDecoder: NSCoder) {
     super.init(coder:aDecoder)
     layer.borderWidth = 1
-    layer.geometryFlipped = true
+    layer.isGeometryFlipped = true
   }
 
-  override func drawRect(rect: CGRect) {
+  override func draw(_ rect: CGRect) {
     if let waveForm = waveForm {
       let vals = waveForm.graphableValues()
 
       let width  = bounds.width
       let height = bounds.height
 
-      let yZero  = CGRectGetMidY(bounds)
+      let yZero  = bounds.midY
       let xScale = CGFloat(1)
       let yScale = height/2
 
-      let transform = CGAffineTransformScale(
-        CGAffineTransformMakeTranslation(0, yZero),
-        xScale, yScale)
+      let transform = CGAffineTransform(translationX: 0, y: yZero).scaledBy(x: xScale, y: yScale)
 
       let cyclePath = cyclePathWithValues(vals)
       let path = pathFromHorizontallyRepeatedCycle(cyclePath, totalWidth:width)
 
-      path.applyTransform(transform)
+      path.apply(transform)
       path.stroke()
     }
   }
 }
 
-func cyclePathWithValues(values:[Float]) -> UIBezierPath {
+func cyclePathWithValues(_ values:[Float]) -> UIBezierPath {
   let cycle = UIBezierPath()
   let valCount = values.count
 
-  cycle.moveToPoint(CGPointZero)
+  cycle.move(to: CGPoint.zero)
   for t in 0..<valCount {
-    cycle.addLineToPoint(CGPointMake(CGFloat(t), CGFloat(values[t])))
+    cycle.addLine(to: CGPoint(x: CGFloat(t), y: CGFloat(values[t])))
   }
-  cycle.addLineToPoint(CGPointMake(CGFloat(valCount), CGFloat(values[0])))
+  cycle.addLine(to: CGPoint(x: CGFloat(valCount), y: CGFloat(values[0])))
   return cycle
 }
 
 
-func pathFromHorizontallyRepeatedCycle(cycle: UIBezierPath, totalWidth:CGFloat) -> UIBezierPath {
-  let cycleOffset = CGAffineTransformMakeTranslation(cycle.bounds.width, 0)
+func pathFromHorizontallyRepeatedCycle(_ cycle: UIBezierPath, totalWidth:CGFloat) -> UIBezierPath {
+  let cycleOffset = CGAffineTransform(translationX: cycle.bounds.width, y: 0)
   let path = UIBezierPath()
   repeat {
-    path.appendPath(cycle)
-    cycle.applyTransform(cycleOffset)
+    path.append(cycle)
+    cycle.apply(cycleOffset)
   } while path.currentPoint.x < totalWidth
   return path
 }

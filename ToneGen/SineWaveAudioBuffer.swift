@@ -9,29 +9,29 @@
 import Foundation
 import AVFoundation
 
-class SineWaveAudioBuffer : AVAudioPCMBuffer {
+class SineWaveAudioBuffer: AVAudioPCMBuffer {
 
-  init(frequency:Float, amplitude:Float, format:AVAudioFormat) {
-    assert(frequency >= 0, "Frequency must not be negative")
+    init(frequency: Double, amplitude: Double, format: AVAudioFormat) {
+        Log.assert(frequency >= 0, "Frequency must not be negative")
 
-    let sr = Float(format.sampleRate)
-    let samples:AVAudioFrameCount = {
-      if frequency == 0 { return 1 }
-      return max(AVAudioFrameCount(sr/frequency), 1)
-    }()
+        let sr = Double(format.sampleRate)
+        let samples: AVAudioFrameCount = {
+            guard frequency != 0 else { return 1 }
+            return max(AVAudioFrameCount(sr / frequency), 1)
+        }()
 
-    super.init(PCMFormat: format, frameCapacity: samples)
+        super.init(pcmFormat: format, frameCapacity: samples)
 
-    self.frameLength = self.frameCapacity
+        self.frameLength = self.frameCapacity
 
-    let numChan = Int(format.channelCount)
-    let w = Float(2*M_PI) * frequency
+        let numChan = Int(format.channelCount)
+        let w = 2 * M_PI * frequency
 
-    for t in 0..<Int(self.frameLength) {
-      let value = amplitude * sinf(w*Float(t)/sr)
-      for c in 0..<numChan {
-        self.floatChannelData[c][t] = value
-      }
+        for t in 0..<Int(self.frameLength) {
+            let value = amplitude * sin(w * Double(t) / sr)
+            for c in 0..<numChan {
+                self.floatChannelData?[c][t] = Float(value)
+            }
+        }
     }
-  }
 }
