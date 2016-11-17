@@ -9,9 +9,10 @@
 import UIKit
 
 class ToneGeneratorCell : UITableViewCell {
-    @IBOutlet var frequencySlider: UISlider?
-    @IBOutlet var frequencyLabel: UILabel?
-    @IBOutlet var amplitudeSlider: UISlider?
+    @IBOutlet weak var frequencySlider: UISlider?
+    @IBOutlet weak var frequencyLabel: UILabel?
+    @IBOutlet weak var amplitudeSlider: UISlider?
+    @IBOutlet weak var amplitudeLabel: UILabel!
 
     var toneGenerator: ToneGenerator? {
         didSet {
@@ -54,7 +55,15 @@ class ToneGeneratorCell : UITableViewCell {
         if let toneGenerator = toneGenerator {
             toneGenerator.amplitude = self.amplitudeSlider?.value ?? 0
             toneGenerator.frequency = self.frequencySlider?.value ?? 0
-            self.frequencyLabel?.text = String(format: "%d", frequencySlider?.value ?? 0)
+            let formatter = NSNumberFormatter()
+            formatter.maximumFractionDigits = 0
+            formatter.minimumFractionDigits = 0
+            frequencyLabel?.text = formatter.stringFromNumber(frequencySlider?.value ?? 0) ?? ""
+
+            formatter.maximumFractionDigits = 2
+            formatter.minimumFractionDigits = 2
+            amplitudeLabel?.text = formatter.stringFromNumber(amplitudeSlider?.value ?? 0) ?? ""
+
         }
     }
 }

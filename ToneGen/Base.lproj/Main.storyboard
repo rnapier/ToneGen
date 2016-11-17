@@ -1,8 +1,10 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6185.7" systemVersion="13E28" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11201" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6181.2"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
         <!--Audio View Controller-->
@@ -14,52 +16,41 @@
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="480" height="480"/>
+                        <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" placeholderIntrinsicWidth="200" placeholderIntrinsicHeight="150" translatesAutoresizingMaskIntoConstraints="NO" id="bt7-a7-1f3" customClass="AudioWaveView" customModule="ToneGen" customModuleProvider="target">
-                                <rect key="frame" x="20" y="20" width="200" height="150"/>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="bt7-a7-1f3" secondAttribute="height" multiplier="4:3" id="dSw-4W-mSD"/>
                                 </constraints>
-                                <variation key="heightClass=regular-widthClass=regular" ambiguous="YES" misplaced="YES">
-                                    <rect key="frame" x="20" y="47" width="600" height="283"/>
-                                </variation>
                             </view>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="108" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="pJ0-KK-Mpc">
-                                <rect key="frame" x="20" y="204" width="440" height="261"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="108" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="pJ0-KK-Mpc">
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <prototypes>
-                                    <tableViewCell contentMode="scaleToFill" ambiguous="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="toneGenerator" rowHeight="108" id="snl-QZ-AtE" customClass="ToneGeneratorCell" customModule="ToneGen" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="0.0" width="240" height="44"/>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="toneGenerator" rowHeight="108" id="snl-QZ-AtE" customClass="ToneGeneratorCell" customModule="ToneGen" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="22" width="728" height="108"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="snl-QZ-AtE" id="0WF-Cd-qyy">
+                                            <frame key="frameInset" width="728" height="107"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Freq" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bGR-Rx-v9a">
-                                                    <rect key="frame" x="12" y="13" width="35" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Amp" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gWG-NJ-6MM">
-                                                    <rect key="frame" x="12" y="45" width="36" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="t4a-lF-lny">
-                                                    <rect key="frame" x="62" y="46" width="360" height="31"/>
-                                                    <variation key="heightClass=regular-widthClass=regular" ambiguous="YES" misplaced="YES">
-                                                        <rect key="frame" x="61" y="258" width="561" height="31"/>
-                                                    </variation>
+                                                <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="10" translatesAutoresizingMaskIntoConstraints="NO" id="t4a-lF-lny">
                                                     <connections>
                                                         <action selector="settingsDidChange" destination="snl-QZ-AtE" eventType="valueChanged" id="Hkn-NK-VQM"/>
                                                     </connections>
                                                 </slider>
                                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="440" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TOi-hf-7dR">
-                                                    <rect key="frame" x="55" y="13" width="48" height="21"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="48" id="qFE-Eo-4JD"/>
                                                     </constraints>
@@ -67,33 +58,40 @@
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="440" minValue="100" maxValue="8000" translatesAutoresizingMaskIntoConstraints="NO" id="Nf0-Xd-3Hl">
-                                                    <rect key="frame" x="109" y="9" width="312" height="31"/>
-                                                    <variation key="heightClass=regular-widthClass=regular" ambiguous="YES" misplaced="YES">
-                                                        <rect key="frame" x="61" y="221" width="561" height="31"/>
-                                                    </variation>
+                                                <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="440" minValue="53" maxValue="8000" translatesAutoresizingMaskIntoConstraints="NO" id="Nf0-Xd-3Hl">
                                                     <connections>
                                                         <action selector="settingsDidChange" destination="snl-QZ-AtE" eventType="valueChanged" id="qks-GJ-X9f"/>
                                                     </connections>
                                                 </slider>
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="440" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9PP-si-pLn">
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="48" id="oMI-JS-JdI"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstAttribute="trailing" secondItem="t4a-lF-lny" secondAttribute="trailing" constant="20" symbolic="YES" id="8j8-68-s92"/>
                                                 <constraint firstItem="t4a-lF-lny" firstAttribute="top" secondItem="Nf0-Xd-3Hl" secondAttribute="bottom" constant="7" id="EB7-BE-d35"/>
                                                 <constraint firstItem="gWG-NJ-6MM" firstAttribute="leading" secondItem="bGR-Rx-v9a" secondAttribute="leading" id="Frx-VV-CrJ"/>
                                                 <constraint firstAttribute="trailing" secondItem="Nf0-Xd-3Hl" secondAttribute="trailing" constant="21" id="I2b-jo-D8w"/>
+                                                <constraint firstItem="9PP-si-pLn" firstAttribute="baseline" secondItem="gWG-NJ-6MM" secondAttribute="baseline" constant="1" id="Kqf-sd-cWW"/>
                                                 <constraint firstItem="Nf0-Xd-3Hl" firstAttribute="leading" secondItem="TOi-hf-7dR" secondAttribute="trailing" constant="8" symbolic="YES" id="YHU-FW-OYl"/>
                                                 <constraint firstItem="TOi-hf-7dR" firstAttribute="leading" secondItem="bGR-Rx-v9a" secondAttribute="trailing" constant="8" symbolic="YES" id="YNt-k3-3vL"/>
                                                 <constraint firstItem="Nf0-Xd-3Hl" firstAttribute="top" secondItem="0WF-Cd-qyy" secondAttribute="top" constant="9" id="cKl-Yr-FmS"/>
                                                 <constraint firstItem="bGR-Rx-v9a" firstAttribute="leading" secondItem="0WF-Cd-qyy" secondAttribute="leading" constant="12" id="eUp-Uu-EUr"/>
-                                                <constraint firstItem="t4a-lF-lny" firstAttribute="leading" secondItem="gWG-NJ-6MM" secondAttribute="trailing" constant="16" id="fud-9u-SDG"/>
+                                                <constraint firstItem="t4a-lF-lny" firstAttribute="leading" secondItem="9PP-si-pLn" secondAttribute="trailing" constant="8" id="mgs-52-kXh"/>
                                                 <constraint firstItem="bGR-Rx-v9a" firstAttribute="baseline" secondItem="TOi-hf-7dR" secondAttribute="baseline" id="nb9-oG-LaE"/>
                                                 <constraint firstItem="gWG-NJ-6MM" firstAttribute="leading" secondItem="0WF-Cd-qyy" secondAttribute="leading" constant="12" id="vCB-74-4hG"/>
+                                                <constraint firstItem="9PP-si-pLn" firstAttribute="leading" secondItem="gWG-NJ-6MM" secondAttribute="trailing" constant="7" id="wgM-rM-u88"/>
                                                 <constraint firstItem="t4a-lF-lny" firstAttribute="top" secondItem="TOi-hf-7dR" secondAttribute="bottom" constant="12" id="xR0-Sc-gIV"/>
                                                 <constraint firstItem="gWG-NJ-6MM" firstAttribute="top" secondItem="bGR-Rx-v9a" secondAttribute="bottom" constant="11" id="ylC-2F-QW1"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
+                                            <outlet property="amplitudeLabel" destination="9PP-si-pLn" id="KhP-vQ-D0Y"/>
                                             <outlet property="amplitudeSlider" destination="t4a-lF-lny" id="O9v-uR-NYp"/>
                                             <outlet property="frequencyLabel" destination="TOi-hf-7dR" id="OBu-i6-jim"/>
                                             <outlet property="frequencySlider" destination="Nf0-Xd-3Hl" id="M8T-vi-Drd"/>
@@ -105,16 +103,15 @@
                                 </connections>
                             </tableView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aq1-gV-GmW">
-                                <rect key="frame" x="414" y="172" width="30" height="30"/>
                                 <state key="normal" title="Add">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
                                 <connections>
                                     <action selector="addToneGenerator:" destination="BYZ-38-t0r" eventType="touchUpInside" id="VkG-yt-HEN"/>
                                 </connections>
                             </button>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="pJ0-KK-Mpc" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="20" id="4Nd-rJ-2fl"/>
                             <constraint firstItem="bt7-a7-1f3" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="20" id="7GN-2z-NdE"/>
@@ -135,7 +132,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="139" y="104"/>
+            <point key="canvasLocation" x="138.28125" y="103.7109375"/>
         </scene>
     </scenes>
 </document>
