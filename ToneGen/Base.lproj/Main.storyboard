@@ -50,6 +50,9 @@
                                             </label>
                                             <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="63" minValue="63" maxValue="4000" translatesAutoresizingMaskIntoConstraints="NO" id="fzP-fl-ZSg">
                                                 <rect key="frame" x="84.5" y="0.0" width="645.5" height="31"/>
+                                                <connections>
+                                                    <action selector="updateFrequency:" destination="BYZ-38-t0r" eventType="valueChanged" id="7hg-VL-v5t"/>
+                                                </connections>
                                             </slider>
                                         </subviews>
                                     </stackView>
@@ -73,6 +76,9 @@
                                             </label>
                                             <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="-12" maxValue="12" translatesAutoresizingMaskIntoConstraints="NO" id="qtX-zF-60N">
                                                 <rect key="frame" x="84.5" y="0.0" width="645.5" height="31"/>
+                                                <connections>
+                                                    <action selector="updateGain:" destination="BYZ-38-t0r" eventType="valueChanged" id="i9T-IP-aym"/>
+                                                </connections>
                                             </slider>
                                         </subviews>
                                     </stackView>
@@ -95,6 +101,10 @@
                     </view>
                     <connections>
                         <outlet property="audioWaveView" destination="bt7-a7-1f3" id="pPe-cC-9hJ"/>
+                        <outlet property="frequencyLabel" destination="mYz-Ij-Txo" id="iaq-py-pRt"/>
+                        <outlet property="frequencySlider" destination="fzP-fl-ZSg" id="fk0-kL-i56"/>
+                        <outlet property="gainLabel" destination="xuo-LP-W78" id="GDr-sP-em3"/>
+                        <outlet property="gainSlider" destination="qtX-zF-60N" id="MdN-6S-KGl"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

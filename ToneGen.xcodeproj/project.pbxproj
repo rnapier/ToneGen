@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		FB122085196B487500AE5D8C /* ToneGeneratorCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB122084196B487500AE5D8C /* ToneGeneratorCell.swift */; };
 		FB3D71FB1DDE51560090CC36 /* Logging.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB3D71FA1DDE51560090CC36 /* Logging.swift */; };
 		FBAC3C3D19659AD300A5AC60 /* SineWaveAudioBuffer.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBAC3C3C19659AD300A5AC60 /* SineWaveAudioBuffer.swift */; };
 		FBAC3C3F1965B36700A5AC60 /* AudioWaveView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBAC3C3E1965B36700A5AC60 /* AudioWaveView.swift */; };
@@ -30,7 +29,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		FB122084196B487500AE5D8C /* ToneGeneratorCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ToneGeneratorCell.swift; sourceTree = "<group>"; };
 		FB3D71FA1DDE51560090CC36 /* Logging.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Logging.swift; sourceTree = "<group>"; };
 		FBAC3C3C19659AD300A5AC60 /* SineWaveAudioBuffer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SineWaveAudioBuffer.swift; sourceTree = "<group>"; };
 		FBAC3C3E1965B36700A5AC60 /* AudioWaveView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AudioWaveView.swift; sourceTree = "<group>"; };
@@ -91,7 +89,6 @@
 				FB3D71FA1DDE51560090CC36 /* Logging.swift */,
 				FBD58E7919619FE6008BBD34 /* AppDelegate.swift */,
 				FBD58E7B19619FE6008BBD34 /* AudioViewController.swift */,
-				FB122084196B487500AE5D8C /* ToneGeneratorCell.swift */,
 				FBD58E961961B6D6008BBD34 /* ToneGenerator.swift */,
 				FBAC3C3C19659AD300A5AC60 /* SineWaveAudioBuffer.swift */,
 				FBAC3C3E1965B36700A5AC60 /* AudioWaveView.swift */,
@@ -234,7 +231,6 @@
 				FBAC3C3D19659AD300A5AC60 /* SineWaveAudioBuffer.swift in Sources */,
 				FB3D71FB1DDE51560090CC36 /* Logging.swift in Sources */,
 				FBD58E7A19619FE6008BBD34 /* AppDelegate.swift in Sources */,
-				FB122085196B487500AE5D8C /* ToneGeneratorCell.swift in Sources */,
 				FBAC3C3F1965B36700A5AC60 /* AudioWaveView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
