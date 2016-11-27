@@ -11,17 +11,21 @@ import AVFoundation
 
 class ToneGenerator: AVAudioPlayerNode {
 
-    fileprivate var buffer: SineWaveAudioBuffer?
+    var buffer: SineWaveAudioBuffer?
 
     var frequency: Double {
         didSet {
-            updateTone()
+            if frequency != oldValue {
+                updateTone()
+            }
         }
     }
 
     var amplitude: Double {
         didSet {
-            updateTone()
+            if amplitude != oldValue {
+                updateTone()
+            }
         }
     }
 

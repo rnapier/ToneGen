@@ -33,15 +33,6 @@ class AudioViewController: UIViewController {
         self.engine.attach(tg)
         self.engine.connect(tg, to: self.engine.mainMixerNode, format:nil)
         try! self.engine.start()
-        let output = self.engine.outputNode
-
-        let block: AVAudioNodeTapBlock = {(buffer, time) in
-            if let view = self.audioWaveView {
-                view.waveForm = buffer
-            }
-        }
-
-        output.installTap(onBus: 0, bufferSize: AVAudioFrameCount(self.audioWaveView?.bounds.width ?? 0), format: nil, block: block)
         tg.play()
         return tg
     }()
@@ -87,22 +78,22 @@ class AudioViewController: UIViewController {
     }
 
     func updateToneGenerator() {
-            let formatter = NumberFormatter()
+        let formatter = NumberFormatter()
 
-            let amplitude = __exp10(Double(gain)/10.0) * baseAmplitude
+        let amplitude = __exp10(Double(gain)/10.0) * baseAmplitude
 
-            toneGenerator.amplitude = amplitude
-            formatter.maximumFractionDigits = 0
-            formatter.minimumFractionDigits = 0
-            gainLabel?.text = formatter.string(from: gain as NSNumber)
+        toneGenerator.amplitude = amplitude
+        formatter.maximumFractionDigits = 0
+        formatter.minimumFractionDigits = 0
+        gainLabel?.text = formatter.string(from: gain as NSNumber)
 
-            toneGenerator.frequency = Double(frequency)
-            formatter.maximumFractionDigits = 0
-            formatter.minimumFractionDigits = 0
-            frequencyLabel?.text = formatter.string(from: frequency as NSNumber) ?? ""
+        toneGenerator.frequency = Double(frequency)
+        formatter.maximumFractionDigits = 0
+        formatter.minimumFractionDigits = 0
+        frequencyLabel?.text = formatter.string(from: frequency as NSNumber) ?? ""
+
+        audioWaveView.waveForm = toneGenerator.buffer
     }
-
-
 
     let engine = AVAudioEngine()
 }
