@@ -13,6 +13,7 @@ class SineWaveAudioBuffer: AVAudioPCMBuffer {
 
     init(frequency: Double, amplitude: Double, format: AVAudioFormat) {
         Log.assert(frequency >= 0, "Frequency must not be negative")
+        Log.assert(amplitude >= 0 && amplitude <= 1.0, "Amplitude must be between 0 and 1")
 
         let sr = Double(format.sampleRate)
         let samples: AVAudioFrameCount = {

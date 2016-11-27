@@ -8,18 +8,29 @@
 
 import UIKit
 
+let frequencies = [63, 125, 250, 500, 1000, 2000, 4000]
+let gainRange = -12...12
+let baseAmplitude = 0.063 // 10^(-12/10); max gain = 1.0 (no clipping)
+
 class ToneGeneratorCell : UITableViewCell {
     @IBOutlet weak var frequencySlider: UISlider?
     @IBOutlet weak var frequencyLabel: UILabel?
-    @IBOutlet weak var amplitudeSlider: UISlider?
-    @IBOutlet weak var amplitudeLabel: UILabel!
+    @IBOutlet weak var gainSlider: UISlider?
+    @IBOutlet weak var gainLabel: UILabel!
+
+    override func awakeFromNib() {
+        frequencySlider?.minimumValue = 0
+        frequencySlider?.maximumValue = Float(frequencies.count - 1)
+        frequencySlider?.value = 0
+        updateToneGenerator()
+    }
 
     var toneGenerator: ToneGenerator? {
         didSet {
             if let tg = toneGenerator {
                 enabled = true
                 frequencySlider?.value = Float(tg.frequency)
-                amplitudeSlider?.value = Float(tg.amplitude)
+                gainSlider?.value = Float(tg.amplitude)
                 updateToneGenerator()
             }
             else {
@@ -31,38 +42,53 @@ class ToneGeneratorCell : UITableViewCell {
     var enabled:Bool = false {
         didSet {
             frequencySlider?.isEnabled = enabled
-            amplitudeSlider?.isEnabled = enabled
+            gainSlider?.isEnabled = enabled
         }
     }
 
-    var frequency:Float {
-        get {
-            return frequencySlider?.value ?? 0
+    var frequency = frequencies.first! {
+        didSet {
+            if frequency != oldValue {
+                updateToneGenerator()
+            }
         }
     }
 
-    var amplitude:Float {
-        get {
-            return amplitudeSlider?.value ?? 0
+    var gain = 0 {
+        didSet {
+            if gain != oldValue {
+                updateToneGenerator()
+            }
         }
     }
 
-    @IBAction func settingsDidChange() {
-        updateToneGenerator()
+    @IBAction func updateFrequency(_ sender: UISlider) {
+        let freqSelection = Int(sender.value)
+        sender.value = Float(freqSelection)
+
+        frequency = frequencies[freqSelection]
+    }
+
+    @IBAction func updateGain(_ sender: UISlider) {
+        gain = Int(sender.value)
+        sender.value = Float(gain)
     }
 
     func updateToneGenerator() {
         if let toneGenerator = toneGenerator {
-            toneGenerator.amplitude = Double(self.amplitudeSlider?.value ?? 0)
-            toneGenerator.frequency = Double(self.frequencySlider?.value ?? 0)
             let formatter = NumberFormatter()
+
+            let amplitude = __exp10(Double(gain)/10.0) * baseAmplitude
+
+            toneGenerator.amplitude = amplitude
             formatter.maximumFractionDigits = 0
             formatter.minimumFractionDigits = 0
-            frequencyLabel?.text = formatter.string(from: frequencySlider?.value as NSNumber? ?? 0) ?? ""
+            gainLabel?.text = formatter.string(from: gain as NSNumber)
 
-            formatter.maximumFractionDigits = 2
-            formatter.minimumFractionDigits = 2
-            amplitudeLabel?.text = formatter.string(from: amplitudeSlider?.value as NSNumber? ?? 0) ?? ""
+            toneGenerator.frequency = Double(frequency)
+            formatter.maximumFractionDigits = 0
+            formatter.minimumFractionDigits = 0
+            frequencyLabel?.text = formatter.string(from: frequency as NSNumber) ?? ""
 
         }
     }

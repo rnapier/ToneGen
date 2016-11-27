@@ -11,9 +11,9 @@ import AVFoundation
 
 extension AVAudioPCMBuffer : GraphableWaveForm {
     func graphableValues() -> [Float] {
-        return [Float](UnsafeBufferPointer(
-            start: self.floatChannelData![0],
-            count: Int(self.frameLength)))
+        return Array(UnsafeBufferPointer(
+            start: floatChannelData![0],
+            count: Int(frameLength)))
     }
 }
 
@@ -21,6 +21,7 @@ class AudioViewController: UIViewController, UITableViewDataSource {
 
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
+        addToneGenerator()
     }
 
     @IBOutlet var audioWaveView: AudioWaveView?
@@ -40,7 +41,7 @@ class AudioViewController: UIViewController, UITableViewDataSource {
         return cell
     }
 
-    @IBAction func addToneGenerator(_ sender: UIButton) {
+    func addToneGenerator() {
         let tg = ToneGenerator(frequency: 410, amplitude: 0.5, format: engine.mainMixerNode.outputFormat(forBus: 0))
         engine.attach(tg)
         engine.connect(tg, to:engine.mainMixerNode, format:nil)
