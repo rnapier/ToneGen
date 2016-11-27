@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11542" systemVersion="16B2555" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
-    <device id="ipad9_7" orientation="portrait">
+    <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
@@ -20,36 +20,36 @@
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" alignment="top" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="ogO-43-NHE">
-                                <rect key="frame" x="20" y="20" width="728" height="626.5"/>
+                                <rect key="frame" x="16" y="20" width="343" height="337.5"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" verticalCompressionResistancePriority="800" placeholderIntrinsicWidth="200" placeholderIntrinsicHeight="150" translatesAutoresizingMaskIntoConstraints="NO" id="bt7-a7-1f3" customClass="AudioWaveView" customModule="ToneGen" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="0.0" width="728" height="546.5"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="343" height="257.5"/>
                                         <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="bt7-a7-1f3" secondAttribute="height" multiplier="4:3" id="LB0-FO-L5j"/>
                                         </constraints>
                                     </view>
                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="gKa-kg-aSB">
-                                        <rect key="frame" x="0.0" y="556.5" width="728" height="30"/>
+                                        <rect key="frame" x="0.0" y="267.5" width="343" height="30"/>
                                         <subviews>
                                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="800" text="Freq" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ues-j1-jgC">
-                                                <rect key="frame" x="0.0" y="0.0" width="35" height="30"/>
+                                                <rect key="frame" x="0.0" y="0.5" width="35" height="30"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="1000" text="8000" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mYz-Ij-Txo">
-                                                <rect key="frame" x="40" y="0.0" width="41.5" height="30"/>
+                                                <rect key="frame" x="40" y="0.5" width="41.5" height="30"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="63" minValue="63" maxValue="4000" translatesAutoresizingMaskIntoConstraints="NO" id="fzP-fl-ZSg">
-                                                <rect key="frame" x="84.5" y="0.0" width="645.5" height="31"/>
+                                                <rect key="frame" x="84.5" y="0.5" width="260.5" height="31"/>
                                                 <connections>
                                                     <action selector="updateFrequency:" destination="BYZ-38-t0r" eventType="valueChanged" id="7hg-VL-v5t"/>
                                                 </connections>
@@ -57,16 +57,16 @@
                                         </subviews>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="JIO-br-zW6">
-                                        <rect key="frame" x="0.0" y="596.5" width="728" height="30"/>
+                                        <rect key="frame" x="0.0" y="307.5" width="343" height="30"/>
                                         <subviews>
                                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="800" text="Gain" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FqN-3I-a5a">
-                                                <rect key="frame" x="0.0" y="0.0" width="35" height="30"/>
+                                                <rect key="frame" x="0.0" y="0.5" width="35" height="30"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="1000" text="8000" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xuo-LP-W78">
-                                                <rect key="frame" x="40" y="0.0" width="41.5" height="30"/>
+                                                <rect key="frame" x="40" y="0.5" width="41.5" height="30"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="41.666666666666671" id="ADZ-TN-esF"/>
                                                 </constraints>
@@ -75,7 +75,7 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="-12" maxValue="12" translatesAutoresizingMaskIntoConstraints="NO" id="qtX-zF-60N">
-                                                <rect key="frame" x="84.5" y="0.0" width="645.5" height="31"/>
+                                                <rect key="frame" x="84.5" y="0.5" width="260.5" height="31"/>
                                                 <connections>
                                                     <action selector="updateGain:" destination="BYZ-38-t0r" eventType="valueChanged" id="i9T-IP-aym"/>
                                                 </connections>

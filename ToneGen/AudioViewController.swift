@@ -105,27 +105,4 @@ class AudioViewController: UIViewController {
 
 
     let engine = AVAudioEngine()
-
-
-//    func updateToneGenerator() {
-//        let tg = ToneGenerator(frequency: 410, amplitude: 0.5, format: engine.mainMixerNode.outputFormat(forBus: 0))
-//        engine.attach(tg)
-//        engine.connect(tg, to:engine.mainMixerNode, format:nil)
-//        if audioModules.count == 0 {
-//            try! engine.start()
-//            let output = engine.outputNode
-//
-//            let block: AVAudioNodeTapBlock = {(buffer, time) in
-//                if let view = self.audioWaveView {
-//                    view.waveForm = buffer
-//                }
-//            }
-//
-//            output.installTap(onBus: 0, bufferSize: AVAudioFrameCount(audioWaveView?.bounds.width ?? 0), format: nil, block: block)
-//        }
-//        tg.play()
-//        
-//        audioModules.append(tg)
-//        audioModulesTableView?.reloadData()
-//    }
 }

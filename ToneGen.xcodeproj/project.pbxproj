@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		FB3D71FB1DDE51560090CC36 /* Logging.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB3D71FA1DDE51560090CC36 /* Logging.swift */; };
+		FB68DDB91DEB437E00B8DCD6 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FB68DDB81DEB437E00B8DCD6 /* Launch Screen.storyboard */; };
 		FBAC3C3D19659AD300A5AC60 /* SineWaveAudioBuffer.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBAC3C3C19659AD300A5AC60 /* SineWaveAudioBuffer.swift */; };
 		FBAC3C3F1965B36700A5AC60 /* AudioWaveView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBAC3C3E1965B36700A5AC60 /* AudioWaveView.swift */; };
 		FBD58E7A19619FE6008BBD34 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBD58E7919619FE6008BBD34 /* AppDelegate.swift */; };
@@ -30,6 +31,7 @@
 
 /* Begin PBXFileReference section */
 		FB3D71FA1DDE51560090CC36 /* Logging.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Logging.swift; sourceTree = "<group>"; };
+		FB68DDB81DEB437E00B8DCD6 /* Launch Screen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 		FBAC3C3C19659AD300A5AC60 /* SineWaveAudioBuffer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SineWaveAudioBuffer.swift; sourceTree = "<group>"; };
 		FBAC3C3E1965B36700A5AC60 /* AudioWaveView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AudioWaveView.swift; sourceTree = "<group>"; };
 		FBC5A98F196486F700019F47 /* MyPlayground.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = MyPlayground.playground; sourceTree = "<group>"; };
@@ -67,6 +69,7 @@
 		FBD58E6B19619FE6008BBD34 = {
 			isa = PBXGroup;
 			children = (
+				FB68DDB81DEB437E00B8DCD6 /* Launch Screen.storyboard */,
 				FBC5A98F196486F700019F47 /* MyPlayground.playground */,
 				FBD58E7619619FE6008BBD34 /* ToneGen */,
 				FBD58E8919619FE6008BBD34 /* ToneGenTests */,
@@ -207,6 +210,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FB68DDB91DEB437E00B8DCD6 /* Launch Screen.storyboard in Resources */,
 				FBD58E7F19619FE6008BBD34 /* Main.storyboard in Resources */,
 				FBD58E8119619FE6008BBD34 /* Images.xcassets in Resources */,
 			);
@@ -307,7 +311,7 @@
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				TARGETED_DEVICE_FAMILY = 2;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
@@ -345,7 +349,7 @@
 				METAL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
-				TARGETED_DEVICE_FAMILY = 2;
+				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
@@ -364,7 +368,7 @@
 				SWIFT_OBJC_BRIDGING_HEADER = "ToneGen/ToneGen-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
-				TARGETED_DEVICE_FAMILY = 1;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
@@ -381,7 +385,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "ToneGen/ToneGen-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
-				TARGETED_DEVICE_FAMILY = 1;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};
