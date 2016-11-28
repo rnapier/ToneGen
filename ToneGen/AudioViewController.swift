@@ -10,8 +10,8 @@ import UIKit
 import AVFoundation
 
 let frequencies = [63, 125, 250, 500, 1000, 2000, 4000] as [Double]
-let gainRange = -12...12
-let baseAmplitude = 0.063 // 10^(-12/10); max gain = 1.0 (no clipping)
+let gainRange = -45...0
+let baseAmplitude = __exp10(-12.0/10) // 0.063 // 10^(-12/10); max gain = 1.0 (no clipping)
 
 extension AVAudioPCMBuffer : GraphableWaveForm {
     func graphableValues() -> [Float] {
@@ -46,6 +46,11 @@ class AudioViewController: UIViewController {
         frequencySlider.minimumValue = 0
         frequencySlider.maximumValue = Float(frequencies.count - 1)
         frequencySlider.value = 0
+
+        gainSlider.minimumValue = Float(gainRange.lowerBound)
+        gainSlider.maximumValue = Float(gainRange.upperBound)
+        gainSlider.value = 0
+
         updateToneGenerator()
     }
 
@@ -66,14 +71,14 @@ class AudioViewController: UIViewController {
     }
 
     @IBAction func updateFrequency(_ sender: UISlider) {
-        let freqSelection = Int(sender.value)
+        let freqSelection = Int(round(sender.value))
         sender.value = Float(freqSelection)
 
         frequency = frequencies[freqSelection]
     }
 
     @IBAction func updateGain(_ sender: UISlider) {
-        gain = Int(sender.value)
+        gain = Int(round(sender.value))
         sender.value = Float(gain)
     }
 
@@ -81,6 +86,7 @@ class AudioViewController: UIViewController {
         let formatter = NumberFormatter()
 
         let amplitude = __exp10(Double(gain)/10.0) * baseAmplitude
+//        print(amplitude)
 
         toneGenerator.amplitude = amplitude
         formatter.maximumFractionDigits = 0

@@ -28,11 +28,14 @@ class SineWaveAudioBuffer: AVAudioPCMBuffer {
         let numChan = Int(format.channelCount)
         let w = 2 * M_PI * frequency
 
+        var maxValue = Float(0)
         for t in 0..<Int(self.frameLength) {
-            let value = amplitude * sin(w * Double(t) / sr)
+            let value = Float(amplitude * sin(w * Double(t) / sr))
+            maxValue = max(maxValue, abs(value))
             for c in 0..<numChan {
-                self.floatChannelData?[c][t] = Float(value)
+                self.floatChannelData?[c][t] = value
             }
         }
+        print(maxValue)
     }
 }
